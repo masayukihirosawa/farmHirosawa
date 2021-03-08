@@ -1,16 +1,15 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app  hide-on-scroll>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Hirosawa Farm</v-toolbar-title>
+      <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
       <router-view />
     </v-main>
-    <div class="space">
-      <p>space</p>
-    </div>
+    <v-container style="height: 1500px;"></v-container>
   </v-app>
 </template>
 
@@ -23,10 +22,3 @@ export default {
   }),
 };
 </script>
-
-<style scoped>
-.space {
-  height: 1000px;
-  margin: 500px;
-}
-</style>
