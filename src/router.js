@@ -8,7 +8,7 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   routes: [
-    { path: "/", component: Home },
-    { path: "/about", component: About },
+    { path: "/home", name: "home", component: Home },
+    { path: "/about", name: "about", component: About },
   ],
 });
