@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app>
       <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
-      <v-toolbar-title>Hirosawa Farm</v-toolbar-title>
+      <v-toolbar-title @click="toHome" class="title">Hirosawa Farm</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
     <SideNav />
@@ -26,7 +26,17 @@ export default {
   methods: {
     toggleSideMenu () {
       this.$store.dispatch('toggleSideMenu')
+    },
+    toHome () {
+      this.$router.push("/")
     }
+  
   }
 };
 </script>
+
+<style scoped>
+.title{
+  cursor: pointer;
+}
+</style>
