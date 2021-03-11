@@ -8,7 +8,10 @@
       sm="4"
       md="3"
     >
-      <v-card max-width="400">
+      <v-card
+        max-width="400"
+        :to="{ name: 'item-id', params: { id: item.id } }"
+      >
         <v-img :src="item.img" max-height="250" max-width="250"></v-img>
         <v-card-title>{{ item.title }}</v-card-title>
         <v-card-text>{{ item.prace }}円</v-card-text>
@@ -22,14 +25,24 @@ export default {
   data() {
     return {
       items: [
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
-        { title: "水菜 200g", prace: 100, img: require("@/assets/logo.png") },
+        {
+          id: 1,
+          title: "水菜 200g",
+          prace: 100,
+          img: require("@/assets/logo.png"),
+        },
+        {
+          id: 2,
+          title: "水菜 200g",
+          prace: 100,
+          img: require("@/assets/logo.png"),
+        },
+        {
+          id: 3,
+          title: "水菜 200g",
+          prace: 100,
+          img: require("@/assets/logo.png"),
+        },
       ],
     };
   },
