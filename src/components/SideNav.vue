@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
+  <v-navigation-drawer v-model="$store.state.drawer" fixed temporary>
     <v-list-item two-line>
       <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
     </v-list-item>
