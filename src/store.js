@@ -27,6 +27,14 @@ export default new Vuex.Store({
     ],
     drawer: false,
   },
+  getters: {
+    getItemById: (state) => (id) => {
+      const data = state.items.find(item => (
+        item.id === id
+      ));
+      return data;
+    },
+  },
   mutations: {
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
