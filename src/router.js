@@ -10,7 +10,7 @@ export default new Router({
   mode: "history",
   routes: [
     { path: "/", name: "home", component: Home },
-    { path: "/item/:id", name: "item-id", component: Item },
+    { path: "/item/:id", name: "item-id", component: Item, props: true },
     { path: "/about", name: "about", component: About },
   ],
   scrollBehavior(to, from, savedPosition) {
