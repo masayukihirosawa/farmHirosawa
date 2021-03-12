@@ -16,6 +16,7 @@ export default {
   },
   mounted() {
     this.item = this.$store.getters.getItemById(parseInt(this.$route.params.id, 10));
+    //parseIntが無いと、リロードしたら{{ item.~~ }}が消える。
   },
 };
 </script>

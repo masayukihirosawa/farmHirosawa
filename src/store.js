@@ -29,10 +29,7 @@ export default new Vuex.Store({
   },
   getters: {
     getItemById: (state) => (id) => {
-      const data = state.items.find(item => (
-        item.id === id
-      ));
-      return data;
+      return state.items.find((item) => item.id === id);
     },
   },
   mutations: {
