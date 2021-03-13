@@ -28,6 +28,9 @@ export default new Vuex.Store({
     drawer: false,
   },
   getters: {
+    items: (state) => {
+      return state.items;
+    },
     getItemById: (state) => (id) => {
       return state.items.find((item) => item.id === id);
     },

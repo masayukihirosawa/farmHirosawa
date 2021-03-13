@@ -25,29 +25,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          title: "水菜 200g",
-          prace: 100,
-          img: require("@/assets/logo.png"),
-        },
-        {
-          id: 2,
-          title: "水菜 200g",
-          prace: 100,
-          img: require("@/assets/logo.png"),
-        },
-        {
-          id: 3,
-          title: "水菜 200g",
-          prace: 100,
-          img: require("@/assets/logo.png"),
-        },
-      ],
-    };
+  computed: {
+    items() {
+      return this.$store.getters.items;
+    },
   },
 };
 </script>
