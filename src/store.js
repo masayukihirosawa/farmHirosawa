@@ -24,6 +24,18 @@ export default new Vuex.Store({
         prace: 100,
         img: require("@/assets/logo.png"),
       },
+      {
+        id: 4,
+        title: "水菜 200g",
+        prace: 100,
+        img: require("@/assets/logo.png"),
+      },
+      {
+        id: 5,
+        title: "水菜 200g",
+        prace: 100,
+        img: require("@/assets/logo.png"),
+      },
     ],
     drawer: false,
   },
