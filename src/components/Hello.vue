@@ -1,15 +1,10 @@
 <template>
-  <v-carousel cycle height="500" hide-delimiters show-arrows-on-hover>
+  <v-carousel cycle max-height="500" hide-delimiters show-arrows-on-hover>
     <v-carousel-item
-      v-for="(slide, i) in slides"
+      v-for="(item, i) in items"
       :key="i"
-    >
-      <v-sheet :color="colors[i]" height="100%">
-        <v-row class="fill-height" align="center" justify="center">
-          <div class="display-3">{{ slide }} Slide</div>
-        </v-row>
-      </v-sheet>
-    </v-carousel-item>
+      :src="item.img"
+    ></v-carousel-item>
   </v-carousel>
 </template>
 
@@ -17,14 +12,26 @@
 export default {
   data() {
     return {
-      colors: [
-        "indigo",
-        "warning",
-        "pink darken-2",
-        "red lighten-1",
-        "deep-purple accent-4",
+      items: [
+        {
+          img: require("@/assets/hello-slide/slide-1.jpeg"),
+        },
+        {
+          img: require("@/assets/hello-slide/slide-2.jpeg"),
+        },
+        {
+          img: require("@/assets/hello-slide/slide-3.jpeg"),
+        },
+        {
+          img: require("@/assets/hello-slide/slide-4.jpeg"),
+        },
+        {
+          img: require("@/assets/hello-slide/slide-5.jpeg"),
+        },
+        {
+          img: require("@/assets/hello-slide/slide-6.jpeg"),
+        },
       ],
-      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
     };
   },
 };
