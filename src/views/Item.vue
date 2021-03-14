@@ -21,6 +21,12 @@
               @change="(value) => changeQuantity(value, item.id)"
             >
             </v-select>
+            <v-btn>
+              カートに入れる
+              <v-icon dark>
+                mdi-cart-outline
+              </v-icon>
+            </v-btn>
           </div>
         </v-col>
       </v-row>
