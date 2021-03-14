@@ -5,14 +5,22 @@
         <v-col class="d-md-flex justify-space-around">
           <v-img :src="item.img" class="my-12 mx-auto" width="500"></v-img>
           <div class="ma-xs-6 ma-md-12">
-            <h3>{{ item.title }}</h3>
+            <h1>{{ item.title }}</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
               obcaecati maiores impedit! Asperiores aliquid recusandae suscipit
               totam quas in animi ut quo fugit voluptates, facilis veniam sed
               soluta voluptatum possimus!
             </p>
-            <p>{{ item.prace }}円</p>
+            <h3>¥ {{ item.prace }}</h3>
+
+            <v-select
+              :value="item.quantity"
+              :items="quantityRange"
+              label="数量"
+              @change="(value) => changeQuantity(value, item.id)"
+            >
+            </v-select>
           </div>
         </v-col>
       </v-row>
@@ -34,7 +42,14 @@ export default {
   data() {
     return {
       item: {},
+      quantityRange: [...Array(10).keys()].map((i) => ++i),
     };
+  },
+  methods: {
+    changeQuantity: (value, id) => {
+      console.log({ value, id }); //変更後の数量と、変更したアイテムのid
+      // ここでvuexのvalueを変更するmutationをcommitしたい。
+    },
   },
   mounted() {
     this.item = this.$store.getters.getItemById(
