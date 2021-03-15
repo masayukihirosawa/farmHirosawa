@@ -30,17 +30,6 @@
           </div>
         </v-col>
       </v-row>
-      <div>
-        <h2>Your Cart</h2>
-        <p v-show="!cartItems.length">
-          <i>Please add some products to cart.</i>
-        </p>
-        <ul>
-          <li v-for="i in cartItems" :key="i.id">
-            {{ item.title }} - {{ item.price }} x {{ item.quantity }}
-          </li>
-        </ul>
-      </div>
     </v-container>
   </div>
 </template>
@@ -75,6 +64,15 @@ export default {
     // カートに追加する処理。
     addToCart(item) {
       this.$store.dispatch("addToCart", item);
+      this.saveCart();
+      this.toCart();
+    },
+    saveCart() {
+      const parsed = JSON.stringify(this.$store.state.cartItems);
+      localStorage.setItem("cartItems", parsed);
+    },
+    toCart() {
+      this.$router.push("/cart");
     },
   },
   mounted() {

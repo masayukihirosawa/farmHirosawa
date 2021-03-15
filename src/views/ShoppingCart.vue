@@ -14,10 +14,20 @@
 
 <script>
 export default {
+  mounted() {
+    if (localStorage.getItem('cartItems')) {
+      try {
+        this.$store.state.cartItems = JSON.parse(localStorage.getItem('cartItems'));
+      } catch(e) {
+        localStorage.removeItem('cartItems');
+      }
+    }
+  },
   computed: {
     cartItems() {
       return this.$store.getters.cartItems;
     },
   },
+
 }
 </script>
