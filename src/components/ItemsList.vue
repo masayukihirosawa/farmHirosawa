@@ -17,7 +17,7 @@
           >
             <v-img :src="item.img" max-height="250" max-width="250"></v-img>
             <v-card-title>{{ item.title }}</v-card-title>
-            <v-card-text>{{ item.prace }}円</v-card-text>
+            <v-card-text>{{ item.price }}円</v-card-text>
           </v-card>
         </v-hover>
       </v-col>

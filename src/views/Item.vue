@@ -12,7 +12,7 @@
               totam quas in animi ut quo fugit voluptates, facilis veniam sed
               soluta voluptatum possimus!
             </p>
-            <h3>¥ {{ item.prace }}</h3>
+            <h3>¥ {{ item.price }}</h3>
 
             <v-select
               :value="item.quantity"
@@ -21,15 +21,26 @@
               @change="(value) => changeQuantity(value, item.id)"
             >
             </v-select>
-            <v-btn>
+            <v-btn @click="addToCart(item)">
               カートに入れる
-              <v-icon dark>
+              <v-icon>
                 mdi-cart-outline
               </v-icon>
             </v-btn>
           </div>
         </v-col>
       </v-row>
+      <div>
+        <h2>Your Cart</h2>
+        <p v-show="!cartItems.length">
+          <i>Please add some products to cart.</i>
+        </p>
+        <ul>
+          <li v-for="i in cartItems" :key="i.id">
+            {{ item.title }} - {{ item.price }} x {{ item.quantity }}
+          </li>
+        </ul>
+      </div>
     </v-container>
   </div>
 </template>
@@ -51,10 +62,19 @@ export default {
       quantityRange: [...Array(10).keys()].map((i) => ++i),
     };
   },
+  computed: {
+    cartItems() {
+      return this.$store.getters.cartItems;
+    },
+  },
   methods: {
     changeQuantity: (value, id) => {
       console.log({ value, id }); //変更後の数量と、変更したアイテムのid
       // ここでvuexのvalueを変更するmutationをcommitしたい。
+    },
+    // カートに追加する処理。
+    addToCart(item) {
+      this.$store.dispatch("addToCart", item);
     },
   },
   mounted() {
