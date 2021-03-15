@@ -6,6 +6,11 @@
         >Hirosawa Farm</v-toolbar-title
       >
       <v-spacer></v-spacer>
+      <v-toolbar-title @click="toCart" class="title"
+        >Cart<v-icon>
+          mdi-cart-outline
+        </v-icon></v-toolbar-title
+      >
     </v-app-bar>
     <SideNav />
     <v-main>
@@ -30,6 +35,9 @@ export default {
     },
     toHome() {
       this.$router.push("/");
+    },
+    toCart() {
+      this.$router.push("/cart");
     },
   },
 };
