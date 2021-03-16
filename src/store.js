@@ -69,6 +69,11 @@ export default new Vuex.Store({
         };
       });
     },
+    cartTotalPrice: (state, getters) => {
+      return getters.cartItems.reduce((total, cartItem) => {
+        return total + cartItem.price * cartItem.quantity;
+      }, 0);
+    },
   },
   mutations: {
     pushToCart(state, item) {
@@ -88,7 +93,9 @@ export default new Vuex.Store({
   },
   actions: {
     addToCart({ state, commit }, item) {
-      const cartItem = state.cartItems.find((cartItem) => cartItem.id === item.id);
+      const cartItem = state.cartItems.find(
+        (cartItem) => cartItem.id === item.id
+      );
       if (!cartItem) {
         commit("pushToCart", item);
       } else {

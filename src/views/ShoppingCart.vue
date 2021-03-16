@@ -3,23 +3,24 @@
     <h2>Your Cart</h2>
     <p v-show="!cartItems.length"><i>Please add some products to cart.</i></p>
     <ul>
-      <li
-        v-for="item in cartItems"
-        :key="item.id">
+      <li v-for="item in cartItems" :key="item.id">
         {{ item.title }} - {{ item.price }} x {{ item.quantity }}
       </li>
     </ul>
+    <p>商品金額: {{ cartTotalPrice }}</p>
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    if (localStorage.getItem('cartItems')) {
+    if (localStorage.getItem("cartItems")) {
       try {
-        this.$store.state.cartItems = JSON.parse(localStorage.getItem('cartItems'));
-      } catch(e) {
-        localStorage.removeItem('cartItems');
+        this.$store.state.cartItems = JSON.parse(
+          localStorage.getItem("cartItems")
+        );
+      } catch (e) {
+        localStorage.removeItem("cartItems");
       }
     }
   },
@@ -27,7 +28,9 @@ export default {
     cartItems() {
       return this.$store.getters.cartItems;
     },
+    cartTotalPrice() {
+      return this.$store.getters.cartTotalPrice;
+    },
   },
-
-}
+};
 </script>
