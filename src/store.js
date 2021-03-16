@@ -15,35 +15,35 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        title: "水菜 200g",
+        title: "ほうれん草 150g",
         price: 100,
         img: require("@/assets/hello-slide/slide-1.jpeg"),
         quantity: 1,
       },
       {
         id: 3,
-        title: "水菜 200g",
+        title: "菊菜 120g",
         price: 100,
         img: require("@/assets/hello-slide/slide-1.jpeg"),
         quantity: 1,
       },
       {
         id: 4,
-        title: "水菜 200g",
+        title: "青梗菜 200g",
         price: 100,
         img: require("@/assets/hello-slide/slide-1.jpeg"),
         quantity: 1,
       },
       {
         id: 5,
-        title: "水菜 200g",
+        title: "たけのこ 200g",
         price: 100,
         img: require("@/assets/hello-slide/slide-1.jpeg"),
         quantity: 1,
       },
       {
         id: 6,
-        title: "水菜 200g",
+        title: "つくし 50g",
         price: 100,
         img: require("@/assets/hello-slide/slide-1.jpeg"),
         quantity: 1,
@@ -61,9 +61,7 @@ export default new Vuex.Store({
     },
     cartItems: (state) => {
       return state.cartItems.map((cartItem) => {
-        const item = state.items.find(
-          (item) => item.id === cartItem.id
-        );
+        const item = state.items.find((item) => item.id === cartItem.id);
         return {
           title: item.title,
           price: item.price,
@@ -79,13 +77,23 @@ export default new Vuex.Store({
         quantity: 1,
       });
     },
+    incrementItemQuantity(state, { id }) {
+      //第2引数にCartItemを渡してるが{ id }と記述することで、その中のidのみを利用することが可能。
+      const cartItem = state.cartItems.find((item) => item.id === id);
+      cartItem.quantity++;
+    },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
     },
   },
   actions: {
-    addToCart({ commit }, item) {
-      commit("pushToCart", item);
+    addToCart({ state, commit }, item) {
+      const cartItem = state.cartItems.find((cartItem) => cartItem.id === item.id);
+      if (!cartItem) {
+        commit("pushToCart", item);
+      } else {
+        commit("incrementItemQuantity", cartItem);
+      }
     },
     toggleSideMenu({ commit }) {
       commit("toggleSideMenu");
