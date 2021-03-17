@@ -87,6 +87,11 @@ export default new Vuex.Store({
       const cartItem = state.cartItems.find((item) => item.id === id);
       cartItem.quantity++;
     },
+    changeQuantity(state, { value, id }) {
+      const item = state.items.find((item) => item.id === id);
+      item.quantity = value;
+      console.log(state.items);
+    },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
     },
