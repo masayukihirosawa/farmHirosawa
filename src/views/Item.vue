@@ -18,7 +18,7 @@
               :value="1"
               :items="quantityRange"
               label="数量"
-              @change="(value) => changeQuantity(value, item.id)"
+              @change="(value) => changeItemQuantity(value, item.id)"
             >
             </v-select>
             <v-btn @click="addToCart(item)">
@@ -57,10 +57,10 @@ export default {
     },
   },
   methods: {
-    changeQuantity(value, id) {
+    changeItemQuantity(value, id) {
       console.log({ value, id }); //変更後の数量と、変更したアイテムのid
       // ここでvuexのvalueを変更するmutationをcommitしたい。
-      this.$store.commit("changeQuantity", { value, id });
+      this.$store.commit("changeItemQuantity", { value, id });
     },
     // カートに追加する処理。
     addToCart(item) {
