@@ -4,6 +4,7 @@
     <p v-show="!cartItems.length"><i>Please add some products to cart.</i></p>
     <ul>
       <li v-for="item in cartItems" :key="item.id">
+        <v-img :src="item.img" class="my-4" width="100"></v-img>
         {{ item.title }} - {{ item.price }} x {{ item.quantity }}
         <v-select
           :value="item.quantity"
@@ -14,7 +15,6 @@
         </v-select>
       </li>
     </ul>
-
     <p>商品金額: {{ cartTotalPrice }}</p>
   </div>
 </template>

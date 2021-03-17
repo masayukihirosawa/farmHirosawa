@@ -66,6 +66,7 @@ export default new Vuex.Store({
           id: item.id,
           title: item.title,
           price: item.price,
+          img: item.img,
           quantity: cartItem.quantity,
         };
       });
