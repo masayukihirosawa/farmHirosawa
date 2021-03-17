@@ -63,6 +63,7 @@ export default new Vuex.Store({
       return state.cartItems.map((cartItem) => {
         const item = state.items.find((item) => item.id === cartItem.id);
         return {
+          id: item.id,
           title: item.title,
           price: item.price,
           quantity: cartItem.quantity,
@@ -91,7 +92,10 @@ export default new Vuex.Store({
     changeQuantity(state, { value, id }) {
       const item = state.items.find((item) => item.id === id);
       item.quantity = value;
-      console.log(state.items);
+    },
+    changeCartItemQuantity(state, { value, id }) {
+      const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
+      cartItem.quantity = value;
     },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
