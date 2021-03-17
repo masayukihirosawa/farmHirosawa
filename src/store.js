@@ -79,13 +79,14 @@ export default new Vuex.Store({
     pushToCart(state, item) {
       state.cartItems.push({
         id: item.id,
-        quantity: 1,
+        quantity: item.quantity,
       });
     },
     incrementItemQuantity(state, { id }) {
       //第2引数にCartItemを渡してるが{ id }と記述することで、その中のidのみを利用することが可能。
+      const item = state.items.find((item) => item.id === id);
       const cartItem = state.cartItems.find((item) => item.id === id);
-      cartItem.quantity++;
+      cartItem.quantity = cartItem.quantity + item.quantity;
     },
     changeQuantity(state, { value, id }) {
       const item = state.items.find((item) => item.id === id);
