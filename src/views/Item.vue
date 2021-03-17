@@ -15,7 +15,7 @@
             <h3>¥ {{ item.price }}</h3>
 
             <v-select
-              :value="item.quantity"
+              :value="1"
               :items="quantityRange"
               label="数量"
               @change="(value) => changeQuantity(value, item.id)"
