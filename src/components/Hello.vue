@@ -14,22 +14,22 @@ export default {
     return {
       items: [
         {
-          img: require("@/assets/hello-slide/slide-1.jpeg"),
+          img: require("@/assets/hello-slide/slide-1.jpg"),
         },
         {
-          img: require("@/assets/hello-slide/slide-2.jpeg"),
+          img: require("@/assets/hello-slide/slide-2.jpg"),
         },
         {
-          img: require("@/assets/hello-slide/slide-3.jpeg"),
+          img: require("@/assets/hello-slide/slide-3.jpg"),
         },
         {
-          img: require("@/assets/hello-slide/slide-4.jpeg"),
+          img: require("@/assets/hello-slide/slide-4.jpg"),
         },
         {
-          img: require("@/assets/hello-slide/slide-5.jpeg"),
+          img: require("@/assets/hello-slide/slide-5.jpg"),
         },
         {
-          img: require("@/assets/hello-slide/slide-6.jpeg"),
+          img: require("@/assets/hello-slide/slide-6.jpg"),
         },
       ],
     };
