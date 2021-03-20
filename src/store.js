@@ -105,8 +105,9 @@ export default new Vuex.Store({
     },
     cartItemRemove(state, { id }) {
       const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
-      // console.log(cartItem);
-      state.cartItems.splice(cartItem.index, 1);
+      const index = state.cartItems.indexOf(cartItem);
+      // console.log(index);
+      state.cartItems.splice(index, 1);
       const parsed = JSON.stringify(state.cartItems);
       localStorage.setItem("cartItems", parsed);
     },
