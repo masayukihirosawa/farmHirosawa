@@ -13,7 +13,6 @@
               soluta voluptatum possimus!
             </p>
             <h3>¥ {{ item.price }}</h3>
-
             <v-select
               :value="1"
               :items="quantityRange"
@@ -21,49 +20,48 @@
               @change="(value) => changeItemQuantity(value, item.id)"
             >
             </v-select>
-            <v-btn @click="addToCart(item)">
-              カートに入れる
-              <v-icon>
-                mdi-cart-outline
-              </v-icon>
-            </v-btn>
+            <!-- カートに入れるボタンと、カートに追加しました。のダイアログ -->
+            <v-row justify="end">
+              <v-dialog max-width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn @click="addToCart(item)" v-bind="attrs" v-on="on">
+                    カートに入れる
+                    <v-icon>
+                      mdi-cart-outline
+                    </v-icon>
+                  </v-btn>
+                </template>
+                <template v-slot:default="dialog">
+                  <v-card>
+                    <v-toolbar flat>
+                      <v-toolbar-title class="mx-auto"
+                        >カートに追加しました。</v-toolbar-title
+                      >
+                    </v-toolbar>
+                    <v-card-actions class="pa-8 justify-center">
+                      <v-btn
+                        class="mx-auto"
+                        rounded
+                        large
+                        outlined
+                        min-width="180"
+                        :to="{ name: 'cart' }"
+                      >
+                        カートを見る
+                      </v-btn>
+                    </v-card-actions>
+                    <v-card-actions class="justify-end">
+                      <v-btn icon @click="dialog.value = false">
+                        <v-icon>mdi-close</v-icon></v-btn
+                      >
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
+            </v-row>
+            <!-- ここまでダイアログ -->
           </div>
         </v-col>
-      </v-row>
-      <v-row justify="center">
-        <v-dialog max-width="500">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" v-bind="attrs" v-on="on"
-              >From the bottom</v-btn
-            >
-          </template>
-          <template v-slot:default="dialog">
-            <v-card>
-              <v-toolbar flat>
-                <v-toolbar-title class="mx-auto"
-                  >カートに追加しました。</v-toolbar-title
-                >
-              </v-toolbar>
-              <v-card-actions class="pa-8 justify-center">
-                <v-btn
-                  class="mx-auto"
-                  rounded
-                  large
-                  outlined
-                  min-width="180"
-                  :to="{ name: 'cart' }"
-                >
-                  カートを見る
-                </v-btn>
-              </v-card-actions>
-              <v-card-actions class="justify-end">
-                <v-btn icon @click="dialog.value = false">
-                  <v-icon>mdi-close</v-icon></v-btn
-                >
-              </v-card-actions>
-            </v-card>
-          </template>
-        </v-dialog>
       </v-row>
     </v-container>
   </div>
