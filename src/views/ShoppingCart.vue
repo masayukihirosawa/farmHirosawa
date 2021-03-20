@@ -16,6 +16,11 @@
       </li>
     </ul>
     <p>商品金額: {{ cartTotalPrice }}</p>
+    <p>
+      <v-btn :disabled="!cartItems.length" @click="checkOut()" elevation="2"
+        >購入する</v-btn
+      >
+    </p>
   </div>
 </template>
 
@@ -49,6 +54,13 @@ export default {
     changeCartItemQuantity(value, id) {
       this.$store.commit("changeCartItemQuantity", { value, id });
       console.log(this.$store.state.cartItems);
+    },
+    checkOut() {
+      this.$store.dispatch("cartItemsRemove");
+      this.toCheckOut();
+    },
+    toCheckOut() {
+      this.$router.push("/checkOut");
     },
   },
 };

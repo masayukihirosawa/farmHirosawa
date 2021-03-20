@@ -103,6 +103,10 @@ export default new Vuex.Store({
       const parsed = JSON.stringify(state.cartItems);
       localStorage.setItem("cartItems", parsed);
     },
+    cartItemsRemove(state) {
+      state.cartItems = [];
+      localStorage.removeItem("cartItems");
+    },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
     },
@@ -117,6 +121,9 @@ export default new Vuex.Store({
       } else {
         commit("incrementItemQuantity", cartItem);
       }
+    },
+    cartItemsRemove({ commit }) {
+      commit("cartItemsRemove");
     },
     toggleSideMenu({ commit }) {
       commit("toggleSideMenu");
