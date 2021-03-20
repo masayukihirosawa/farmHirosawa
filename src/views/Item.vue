@@ -30,6 +30,41 @@
           </div>
         </v-col>
       </v-row>
+      <v-row justify="center">
+        <v-dialog max-width="500">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="primary" v-bind="attrs" v-on="on"
+              >From the bottom</v-btn
+            >
+          </template>
+          <template v-slot:default="dialog">
+            <v-card>
+              <v-toolbar flat>
+                <v-toolbar-title class="mx-auto"
+                  >カートに追加しました。</v-toolbar-title
+                >
+              </v-toolbar>
+              <v-card-actions class="pa-8 justify-center">
+                <v-btn
+                  class="mx-auto"
+                  rounded
+                  large
+                  outlined
+                  min-width="180"
+                  :to="{ name: 'cart' }"
+                >
+                  カートを見る
+                </v-btn>
+              </v-card-actions>
+              <v-card-actions class="justify-end">
+                <v-btn icon @click="dialog.value = false">
+                  <v-icon>mdi-close</v-icon></v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </template>
+        </v-dialog>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -66,7 +101,7 @@ export default {
     addToCart(item) {
       this.$store.dispatch("addToCart", item);
       this.saveCart();
-      this.toCart();
+      // this.toCart();
     },
     saveCart() {
       const parsed = JSON.stringify(this.$store.state.cartItems);
