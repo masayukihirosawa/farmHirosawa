@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home";
-import Item from "./views/Item";
-import ShoppingCart from "./views/ShoppingCart";
-import About from "./views/About";
+const Home = () => import(/* webpackChunkName: "Home" */ "./views/Home.vue");
+const Item = () => import(/* webpackChunkName: "Item" */ "./views/Item.vue");
+const ShoppingCart = () =>
+  import(/* webpackChunkName: "ShoppingCart" */ "./views/ShoppingCart.vue");
+const About = () => import(/* webpackChunkName: "About" */ "./views/About.vue");
 
 Vue.use(Router);
 
