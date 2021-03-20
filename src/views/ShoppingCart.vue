@@ -1,13 +1,12 @@
 <template>
   <div>
-    <v-progress-linear
-      :active="loading"
-      :indeterminate="loading"
-      absolute
-      top
-    ></v-progress-linear>
+    <v-progress-linear :active="loading" :indeterminate="loading" absolute top>
+    </v-progress-linear>
+    <v-overlay :value="overlay"> </v-overlay>
     <h2>ショッピングカート</h2>
-    <p v-if="!cartItems.length"><i>ショッピングカートの中に商品がございません。</i></p>
+    <p v-if="!cartItems.length">
+      <i>ショッピングカートの中に商品がございません。</i>
+    </p>
     <ul>
       <li v-for="item in cartItems" :key="item.id">
         <v-img :src="item.img" class="my-4" width="100"></v-img>
@@ -37,6 +36,7 @@ export default {
     return {
       quantityRange: [...Array(10).keys()].map((i) => ++i),
       loading: false,
+      overlay: false,
     };
   },
   mounted() {
@@ -67,10 +67,12 @@ export default {
       this.$store.dispatch("cartItemRemove", item);
     },
     checkOut() {
-      this.loading = true
+      this.loading = true;
+      this.overlay = true;
       setTimeout(this.toCheckOut, 1500);
-      setTimeout(() => (this.$store.dispatch("cartItemsRemove")), 1500);
+      setTimeout(() => this.$store.dispatch("cartItemsRemove"), 1500);
       setTimeout(() => (this.loading = false), 1500);
+      setTimeout(() => (this.overlay = false), 1500);
     },
     toCheckOut() {
       this.$router.push("/checkOut");
