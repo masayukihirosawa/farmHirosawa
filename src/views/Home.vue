@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hello -->
-    <v-carousel cycle max-height="500" hide-delimiters>
+    <v-carousel cycle height="40vh" hide-delimiters>
       <v-carousel-item
         v-for="(image, i) in images"
         :key="i"
