@@ -1,7 +1,13 @@
 <template>
   <div>
-    <h2>Your Cart</h2>
-    <p v-show="!cartItems.length"><i>カートは空です。</i></p>
+    <v-progress-linear
+      :active="loading"
+      :indeterminate="loading"
+      absolute
+      top
+    ></v-progress-linear>
+    <h2>ショッピングカート</h2>
+    <p v-if="!cartItems.length"><i>ショッピングカートの中に商品がございません。</i></p>
     <ul>
       <li v-for="item in cartItems" :key="item.id">
         <v-img :src="item.img" class="my-4" width="100"></v-img>
@@ -16,10 +22,10 @@
         <v-btn @click="cartItemRemove(item)" elevation="2">削除</v-btn>
       </li>
     </ul>
-    <p>商品金額: {{ cartTotalPrice }}</p>
+    <p v-if="cartItems.length">商品金額: {{ cartTotalPrice }}</p>
     <p>
       <v-btn :disabled="!cartItems.length" @click="checkOut()" elevation="2"
-        >購入する</v-btn
+        >ご注文を確定する</v-btn
       >
     </p>
   </div>
@@ -30,6 +36,7 @@ export default {
   data() {
     return {
       quantityRange: [...Array(10).keys()].map((i) => ++i),
+      loading: false,
     };
   },
   mounted() {
@@ -60,12 +67,22 @@ export default {
       this.$store.dispatch("cartItemRemove", item);
     },
     checkOut() {
-      this.$store.dispatch("cartItemsRemove");
-      this.toCheckOut();
+      this.loading = true
+      setTimeout(this.toCheckOut, 1500);
+      setTimeout(() => (this.$store.dispatch("cartItemsRemove")), 1500);
+      setTimeout(() => (this.loading = false), 1500);
     },
     toCheckOut() {
       this.$router.push("/checkOut");
     },
   },
+  // beforeRouteLeave(to, from, next) {
+  //   const isLeave = window.confirm("購入を確定しますか？");
+  //   if (isLeave) {
+  //     next ();
+  //     }else{
+  //       next(false);
+  //     }
+  // }
 };
 </script>
