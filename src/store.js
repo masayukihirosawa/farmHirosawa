@@ -103,6 +103,13 @@ export default new Vuex.Store({
       const parsed = JSON.stringify(state.cartItems);
       localStorage.setItem("cartItems", parsed);
     },
+    cartItemRemove(state, { id }) {
+      const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
+      // console.log(cartItem);
+      state.cartItems.splice(cartItem.index, 1);
+      const parsed = JSON.stringify(state.cartItems);
+      localStorage.setItem("cartItems", parsed);
+    },
     cartItemsRemove(state) {
       state.cartItems = [];
       localStorage.removeItem("cartItems");
@@ -121,6 +128,13 @@ export default new Vuex.Store({
       } else {
         commit("incrementItemQuantity", cartItem);
       }
+    },
+    cartItemRemove({ state, commit }, item) {
+      const cartItem = state.cartItems.find(
+        (cartItem) => cartItem.id === item.id
+      );
+      // console.log(cartItem);
+      commit("cartItemRemove", cartItem);
     },
     cartItemsRemove({ commit }) {
       commit("cartItemsRemove");

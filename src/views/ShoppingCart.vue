@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Your Cart</h2>
-    <p v-show="!cartItems.length"><i>Please add some products to cart.</i></p>
+    <p v-show="!cartItems.length"><i>カートは空です。</i></p>
     <ul>
       <li v-for="item in cartItems" :key="item.id">
         <v-img :src="item.img" class="my-4" width="100"></v-img>
@@ -13,6 +13,7 @@
           @change="(value) => changeCartItemQuantity(value, item.id)"
         >
         </v-select>
+        <v-btn @click="cartItemRemove(item)" elevation="2">削除</v-btn>
       </li>
     </ul>
     <p>商品金額: {{ cartTotalPrice }}</p>
@@ -54,6 +55,9 @@ export default {
     changeCartItemQuantity(value, id) {
       this.$store.commit("changeCartItemQuantity", { value, id });
       console.log(this.$store.state.cartItems);
+    },
+    cartItemRemove(item) {
+      this.$store.dispatch("cartItemRemove", item);
     },
     checkOut() {
       this.$store.dispatch("cartItemsRemove");
