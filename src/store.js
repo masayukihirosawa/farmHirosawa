@@ -89,6 +89,9 @@ export default new Vuex.Store({
       const item = state.items.find((item) => item.id === id);
       const cartItem = state.cartItems.find((item) => item.id === id);
       cartItem.quantity = cartItem.quantity + item.quantity;
+      if (cartItem.quantity >= 11) {
+        cartItem.quantity = 10;
+      }
     },
     changeItemQuantity(state, { value, id }) {
       const item = state.items.find((item) => item.id === id);
