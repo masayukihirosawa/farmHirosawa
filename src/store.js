@@ -100,6 +100,8 @@ export default new Vuex.Store({
     changeCartItemQuantity(state, { value, id }) {
       const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
       cartItem.quantity = value;
+      const parsed = JSON.stringify(state.cartItems);
+      localStorage.setItem("cartItems", parsed);
     },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
