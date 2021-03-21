@@ -84,11 +84,6 @@ export default {
       quantityRange: [...Array(10).keys()].map((i) => ++i),
     };
   },
-  computed: {
-    cartItems() {
-      return this.$store.getters.cartItems;
-    },
-  },
   methods: {
     changeItemQuantity(value, id) {
       console.log({ value, id }); //変更後の数量と、変更したアイテムのid
@@ -99,7 +94,6 @@ export default {
     addToCart(item) {
       this.$store.dispatch("addToCart", item);
       this.saveCart();
-      // this.toCart();
     },
     saveCart() {
       const parsed = JSON.stringify(this.$store.state.cartItems);
@@ -114,6 +108,10 @@ export default {
       parseInt(this.$route.params.id, 10)
     );
     //parseIntが無いと、リロードしたら{{ item.~~ }}が消える。
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.dispatch("resetItemQuantity");
+    next();
   },
 };
 </script>
