@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-progress-linear :active="loading" :indeterminate="loading" absolute top>
+    <v-progress-linear :active="loading" :indeterminate="loading" fixed>
     </v-progress-linear>
     <v-overlay :value="overlay"> </v-overlay>
     <h2>ショッピングカート</h2>
