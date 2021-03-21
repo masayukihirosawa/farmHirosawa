@@ -3,30 +3,63 @@
     <v-progress-linear :active="loading" :indeterminate="loading" fixed>
     </v-progress-linear>
     <v-overlay :value="overlay"> </v-overlay>
-    <h2>ショッピングカート</h2>
-    <p v-if="!cartItems.length">
-      <i>ショッピングカートの中に商品がございません。</i>
-    </p>
-    <ul>
-      <li v-for="item in cartItems" :key="item.id">
-        <v-img :src="item.img" class="my-4" width="100"></v-img>
-        {{ item.title }} - {{ item.price }} x {{ item.quantity }}
-        <v-select
-          :value="item.quantity"
-          :items="quantityRange"
-          label="数量"
-          @change="(value) => changeCartItemQuantity(value, item.id)"
+    <!-- ------------ -->
+    <v-container style="max-width: 500px;">
+      <v-card elevation="0" class="mt-4" max-width="400">
+        <v-card-title>ショッピングカート</v-card-title>
+        <v-card-text v-if="!cartItems.length">
+          ショッピングカートの中に商品がございません。
+        </v-card-text>
+      </v-card>
+      <v-row>
+        <v-col
+          v-for="item in cartItems"
+          :key="item.id"
+          class="mt-10 justify-center"
+          cols="12"
         >
-        </v-select>
-        <v-btn @click="cartItemRemove(item)" elevation="2">削除</v-btn>
-      </li>
-    </ul>
-    <p v-if="cartItems.length">商品金額: {{ cartTotalPrice }}</p>
-    <p>
-      <v-btn :disabled="!cartItems.length" @click="checkOut()" elevation="2"
-        >ご注文を確定する</v-btn
-      >
-    </p>
+          <v-card class="mx-auto" width="500" outlined>
+            <v-img
+              :src="item.img"
+              class="mt-6 ml-6 mr-6"
+              max-width="300"
+            ></v-img>
+            <v-list-item class="ma-4">
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-subtitle>{{ item.price }}円</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-row class="mb-2 justify-end">
+              <v-list-item-action>
+                <v-select
+                  :value="item.quantity"
+                  :items="quantityRange"
+                  label="数量"
+                  @change="(value) => changeCartItemQuantity(value, item.id)"
+                >
+                </v-select>
+                <v-btn @click="cartItemRemove(item)">削除</v-btn>
+              </v-list-item-action>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="ma-10 justify-center">
+        <v-list-item-action>
+          <v-list-item-title v-if="cartItems.length"
+            >合計金額: {{ cartTotalPrice }}</v-list-item-title
+          >
+          <v-btn
+            v-if="cartItems.length"
+            @click="checkOut()"
+            elevation="2"
+            class="mt-4"
+            >ご注文を確定する</v-btn
+          >
+        </v-list-item-action>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -78,13 +111,5 @@ export default {
       this.$router.push("/checkOut");
     },
   },
-  // beforeRouteLeave(to, from, next) {
-  //   const isLeave = window.confirm("購入を確定しますか？");
-  //   if (isLeave) {
-  //     next ();
-  //     }else{
-  //       next(false);
-  //     }
-  // }
 };
 </script>
