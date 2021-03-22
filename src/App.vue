@@ -9,8 +9,17 @@
       <v-toolbar-title @click="toCart" class="title"
         >Cart<v-icon>
           mdi-cart-outline
-        </v-icon></v-toolbar-title
+        </v-icon>
+      </v-toolbar-title>
+      <v-badge
+        v-if="cartItems.length"
+        color="rgb(237, 86, 27)"
+        dot
+        bordered
+        offset-x="8"
+        offset-y="-2"
       >
+      </v-badge>
     </v-app-bar>
     <SideNav />
     <v-main>
@@ -29,6 +38,11 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    cartItems() {
+      return this.$store.getters.cartItems;
+    },
+  },
   methods: {
     toggleSideMenu() {
       this.$store.dispatch("toggleSideMenu");
