@@ -21,12 +21,11 @@
         >
           <v-hover v-slot="{ hover }">
             <v-card
-              max-width="400"
               :to="{ name: 'item-id', params: { id: item.id } }"
               :elevation="hover ? 6 : 2"
             >
-              <v-img :src="item.img" max-height="250" max-width="250"></v-img>
-              <v-card-title>{{ item.title }}</v-card-title>
+              <v-img :src="item.img"></v-img>
+              <v-card-subtitle>{{ item.title }}</v-card-subtitle>
               <v-card-text>{{ item.price }}円</v-card-text>
             </v-card>
           </v-hover>
