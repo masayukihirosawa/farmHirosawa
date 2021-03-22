@@ -19,15 +19,20 @@
           cols="12"
         >
           <v-card class="mx-auto" width="500" outlined>
-            <v-img
-              :src="item.img"
-              class="mt-6 ml-6 mr-6"
-              max-width="300"
-            ></v-img>
+            <v-card :to="{ name: 'item-id', params: { id: item.id } }" flat width="300">
+              <v-img
+                :src="item.img"
+                class="mt-6 ml-6 mr-6"
+                max-width="300"
+              ></v-img>
+            </v-card>
             <v-list-item class="ma-4">
               <v-list-item-content>
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
-                <v-list-item-subtitle>{{ item.price }}円</v-list-item-subtitle>
+                <v-list-item-subtitle
+                  >{{ item.price }}円 ×
+                  {{ item.quantity }}点</v-list-item-subtitle
+                >
               </v-list-item-content>
             </v-list-item>
             <v-row class="mb-2 justify-end">
