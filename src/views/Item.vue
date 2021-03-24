@@ -17,7 +17,7 @@
               <v-card-title>{{ item.title }}</v-card-title>
               <v-card-text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti obcaecati maiores 
+                Corrupti obcaecati maiores
               </v-card-text>
               <v-card-title>¥ {{ item.price }}</v-card-title>
             </v-card>
@@ -120,6 +120,11 @@ export default {
       parseInt(this.$route.params.id, 10)
     );
     //parseIntが無いと、リロードしたら{{ item.~~ }}が消える。
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      vm.$store.dispatch("resetItemQuantity");
+    });
   },
   beforeRouteLeave(to, from, next) {
     this.$store.dispatch("resetItemQuantity");
