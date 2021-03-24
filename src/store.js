@@ -87,7 +87,6 @@ export default new Vuex.Store({
       });
     },
     incrementItemQuantity(state, { id }) {
-      //第2引数にCartItemを渡してるが{ id }と記述することで、その中のidのみを利用することが可能。
       const item = state.items.find((item) => item.id === id);
       const cartItem = state.cartItems.find((item) => item.id === id);
       cartItem.quantity = cartItem.quantity + item.quantity;
@@ -98,8 +97,7 @@ export default new Vuex.Store({
     changeItemQuantity(state, { value, item }) {
       item.quantity = value;
     },
-    changeCartItemQuantity(state, { value, id }) {
-      const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
+    changeCartItemQuantity(state, { value, cartItem }) {
       cartItem.quantity = value;
       const parsed = JSON.stringify(state.cartItems);
       localStorage.setItem("cartItems", parsed);
@@ -112,7 +110,6 @@ export default new Vuex.Store({
     cartItemRemove(state, { id }) {
       const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
       const index = state.cartItems.indexOf(cartItem);
-      // console.log(index);
       state.cartItems.splice(index, 1);
       const parsed = JSON.stringify(state.cartItems);
       localStorage.setItem("cartItems", parsed);
@@ -140,6 +137,10 @@ export default new Vuex.Store({
       const item = state.items.find((item) => item.id === id);
       commit("changeItemQuantity", { value, item });
     },
+    changeCartItemQuantity({ state, commit }, { value, id }) {
+      const cartItem = state.cartItems.find((cartItem) => cartItem.id === id);
+      commit("changeCartItemQuantity", { value, cartItem });
+    },
     resetItemQuantity({ commit }) {
       commit("resetItemQuantity");
     },
@@ -147,7 +148,6 @@ export default new Vuex.Store({
       const cartItem = state.cartItems.find(
         (cartItem) => cartItem.id === item.id
       );
-      // console.log(cartItem);
       commit("cartItemRemove", cartItem);
     },
     cartItemsRemove({ commit }) {

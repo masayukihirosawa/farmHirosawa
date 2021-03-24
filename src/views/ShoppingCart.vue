@@ -98,8 +98,7 @@ export default {
   },
   methods: {
     changeCartItemQuantity(value, id) {
-      this.$store.commit("changeCartItemQuantity", { value, id });
-      console.log(this.$store.state.cartItems);
+      this.$store.dispatch("changeCartItemQuantity", { value, id });
     },
     cartItemRemove(item) {
       this.$store.dispatch("cartItemRemove", item);
