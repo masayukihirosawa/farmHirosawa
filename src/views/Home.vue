@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- Hello -->
-    <v-carousel cycle height="40vh" hide-delimiters>
-      <v-carousel-item
-        v-for="(image, i) in images"
-        :key="i"
-        :src="image.img"
-      ></v-carousel-item>
-    </v-carousel>
+    <v-img :src="img" height="40vh"></v-img>
     <!-- ItemsList -->
     <v-container style="height: 1500px;">
       <v-row>
@@ -40,20 +33,7 @@ export default {
   name: "home",
   data() {
     return {
-      images: [
-        {
-          img: require("@/assets/hello-slide/slide-1.jpg"),
-        },
-        {
-          img: require("@/assets/hello-slide/slide-2.jpg"),
-        },
-        {
-          img: require("@/assets/hello-slide/slide-3.jpg"),
-        },
-        {
-          img: require("@/assets/hello-slide/slide-4.jpg"),
-        },
-      ],
+      img: require("@/assets/home.jpg"),
     };
   },
   computed: {
