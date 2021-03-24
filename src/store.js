@@ -95,8 +95,7 @@ export default new Vuex.Store({
         cartItem.quantity = 10;
       }
     },
-    changeItemQuantity(state, { value, id }) {
-      const item = state.items.find((item) => item.id === id);
+    changeItemQuantity(state, { value, item }) {
       item.quantity = value;
     },
     changeCartItemQuantity(state, { value, id }) {
@@ -136,6 +135,10 @@ export default new Vuex.Store({
       } else {
         commit("incrementItemQuantity", cartItem);
       }
+    },
+    changeItemQuantity({ state, commit }, { value, id }) {
+      const item = state.items.find((item) => item.id === id);
+      commit("changeItemQuantity", { value, item });
     },
     resetItemQuantity({ commit }) {
       commit("resetItemQuantity");

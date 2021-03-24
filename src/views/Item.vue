@@ -98,9 +98,8 @@ export default {
   },
   methods: {
     changeItemQuantity(value, id) {
-      console.log({ value, id }); //変更後の数量と、変更したアイテムのid
-      // ここでvuexのvalueを変更するmutationをcommitしたい。
-      this.$store.commit("changeItemQuantity", { value, id });
+      console.log({ value, id }); //変更後のアイテムの数量と、変更したアイテムのid
+      this.$store.dispatch("changeItemQuantity", { value, id });
     },
     // カートに追加する処理。
     addToCart(item) {
