@@ -31,10 +31,10 @@
                 >
                 </v-select>
               </v-card-actions>
-              <!-- カートに入れるボタンと、カートに追加しました。のダイアログ -->
               <v-card-actions>
                 <v-dialog max-width="500">
                   <template v-slot:activator="{ on, attrs }">
+                    <!-- ↑ダイアログが呼び出される。 -->
                     <v-btn @click="addToCart(item)" v-bind="attrs" v-on="on">
                       カートに入れる
                       <v-icon>
@@ -42,6 +42,7 @@
                       </v-icon>
                     </v-btn>
                   </template>
+                  <!----- ここから、カートに追加しましたのダイアログ ----->
                   <template v-slot:default="dialog">
                     <v-card>
                       <v-toolbar flat>
@@ -71,21 +72,13 @@
                 </v-dialog>
               </v-card-actions>
             </v-card>
-            <!-- ここまでダイアログ -->
+            <!----- ここまでダイアログ ----->
           </v-card>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
-
-<!--
-  5 : md(960px><1264px)以上の時、display-flexを効かせる。justify-space-aroundで子要素同士で間隔を開ける。
-  6 : my-12で、y軸にmargin: 48px;を適用します。
-      mx-autoで、コンテンツを水平方向にセンタリング。
-  7 : ma-xs-6で、xs(<600px)以上の時、margin: 24px; を効かせる。
-      ma-md-12で、md(960px><1264px)以上の時、margin: 48px; を効かせる。
-  -->
 
 <script>
 export default {
@@ -98,10 +91,8 @@ export default {
   },
   methods: {
     changeItemQuantity(value, id) {
-      console.log({ value, id }); //変更後のアイテムの数量と、変更したアイテムのid
       this.$store.dispatch("changeItemQuantity", { value, id });
     },
-    // カートに追加する処理。
     addToCart(item) {
       this.$store.dispatch("addToCart", item);
       this.saveCart();
@@ -116,9 +107,8 @@ export default {
   },
   mounted() {
     this.item = this.$store.getters.getItemById(
-      parseInt(this.$route.params.id, 10)
+      parseInt(this.$route.params.id, 10) //parseIntが無いと、リロードしたら{{ item.~~ }}が消える。
     );
-    //parseIntが無いと、リロードしたら{{ item.~~ }}が消える。
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
@@ -131,3 +121,33 @@ export default {
   },
 };
 </script>
+
+<!--
+ホーム画面で商品を押したら遷移する、アイテム詳細ページです。
+このページでユーザーは、
+・商品の数量を選択する（changeItemQuantity()）
+・カートに追加する（addToCart() & saveCart()）
+ことが出来ます。
+
+
+script内の説明
+・changeItemQuantity()
+  数量選択ボタンのメソッド。アイテムの数量を変更します。
+  store.jsに変更後のアイテムの数量と変更したアイテムのidを渡して、stateのitemsのquantityの値を変更しています。
+
+・addToCart()
+  カートに入れるボタンのメソッド。
+  stateのcartItemsに選択したアイテムがなければ、stateのcartItemsにオブジェクトをプッシュします。
+  選択したアイテムがあれば、stateのcartItemsのquantityの値を増やします。
+  saveCart()を実行します。
+
+・saveCart()
+  LocalStorageに、store.jsのstateのcartItemsを保存します。
+
+・mounted()
+  params.idでアイテムの詳細を取得しています。
+
+・beforeRouteEnter() & beforeRouteLeave()
+  ページを離れたり、再読み込みをするとアイテムの数量の画面上の値はリセットされますが（:value="1"としているため）、
+  vuexのstateの値はそのままのため、こちらの処理でvuexのstateの値をリセットしています。
+-->

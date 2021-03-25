@@ -1,9 +1,10 @@
 <template>
   <div>
+    <!-- 注文を確定するボタンを押した時に出る、ProgressLinearとOverlayです。 -->
     <v-progress-linear :active="loading" :indeterminate="loading" fixed>
     </v-progress-linear>
     <v-overlay :value="overlay"> </v-overlay>
-    <!-- ------------ -->
+    <!------------------------------------------------------------------------->
     <v-container style="max-width: 500px;">
       <v-card elevation="0" class="mt-4" max-width="400">
         <v-card-title>ショッピングカート</v-card-title>
@@ -19,7 +20,11 @@
           cols="12"
         >
           <v-card class="mx-auto" width="500" outlined>
-            <v-card :to="{ name: 'item-id', params: { id: item.id } }" flat width="300">
+            <v-card
+              :to="{ name: 'item-id', params: { id: item.id } }"
+              flat
+              width="300"
+            >
               <v-img
                 :src="item.img"
                 class="mt-6 ml-6 mr-6"
@@ -117,3 +122,27 @@ export default {
   },
 };
 </script>
+
+<!-- カートに入っている商品を表示する、ショッピングカートページです。
+このページでユーザーは、
+・商品の数量を変更する（changeCartItemQuantity()）
+・カートから商品を削除する（cartItemRemove()）
+・購入を確定する（checkOut()）
+ことが出来ます。
+
+
+script内の説明
+・changeCartItemQuantity()
+  数量変更ボタンのメソッド。カート内のアイテムの数量を変更します。
+  store.jsに変更後のアイテムの数量と変更したアイテムのidを渡して、stateのcartItemsのquantityの値を変更しています。
+  また、LocalStorageに、store.jsのstateのcartItemsを保存します。
+
+・cartItemRemove()
+  store.jsのstateのcartItemsの配列から選択したアイテムを一つ削除します。
+  削除したあと、LocalStorageのcartItemsを更新します。
+
+・checkOut()
+  実際には、this.$store.dispatch("cartItemsRemove")で
+  store.jsのstateのcartItemsを空にして、LocalStorageのcartItemsを削除しているだけとなっております。
+  それと同時にtoCheckOut()メソッドを実行して、CheckOutページに遷移します。
+-->
