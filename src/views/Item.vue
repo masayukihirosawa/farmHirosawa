@@ -15,10 +15,7 @@
           >
             <v-card flat>
               <v-card-title>{{ item.title }}</v-card-title>
-              <v-card-text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Corrupti obcaecati maiores
-              </v-card-text>
+              <v-card-text>{{ item.text }}</v-card-text>
               <v-card-title>¥ {{ item.price }}</v-card-title>
             </v-card>
             <v-card flat class="mt-md-16">
