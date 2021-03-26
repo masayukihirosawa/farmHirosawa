@@ -11,7 +11,8 @@ export default new Vuex.Store({
       {
         id: 1,
         title: "水菜 200g",
-        text: "サラダの定番野菜、水菜。 ツナ缶を使ったサラダ、お肉を使ったサラダ、豆腐サラダ、、、。 何と合わせてもいい感じになるのいろいろアレンジしてみてくださいね。",
+        text:
+          "サラダの定番野菜、水菜。 ツナ缶を使ったサラダ、お肉を使ったサラダ、豆腐サラダ、、、。 何と合わせてもいい感じになるのいろいろアレンジしてみてくださいね。",
         price: 100,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -19,7 +20,8 @@ export default new Vuex.Store({
       {
         id: 2,
         title: "ほうれん草 150g",
-        text: "寒さにあたって甘みの増したほうれん草。 お浸しや和えもの、いろんなおかずにアレンジしてみてくださいね。",
+        text:
+          "寒さにあたって甘みの増したほうれん草。 お浸しや和えもの、いろんなおかずにアレンジしてみてくださいね。",
         price: 100,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -27,7 +29,8 @@ export default new Vuex.Store({
       {
         id: 3,
         title: "菊菜 120g",
-        text: "お鍋料理の定番野菜、菊菜。 さっと湯通してお浸しにしても、シャキシャキして美味しいですよ。",
+        text:
+          "お鍋料理の定番野菜、菊菜。 さっと湯通してお浸しにしても、シャキシャキして美味しいですよ。",
         price: 100,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -35,7 +38,8 @@ export default new Vuex.Store({
       {
         id: 4,
         title: "キャベツ 1玉",
-        text: "春に採れる春キャベツ。 葉が柔らかく、加熱料理はもちろんサラダなどの生食でも美味しくいただけます。",
+        text:
+          "春に採れる春キャベツ。 葉が柔らかく、加熱料理はもちろんサラダなどの生食でも美味しくいただけます。",
         price: 200,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -43,7 +47,8 @@ export default new Vuex.Store({
       {
         id: 5,
         title: "ブロッコリー 1個",
-        text: "サラダやお弁当に大活躍なブロッコリー。 マヨネーズやつぶマスタードが欲しくなる。 茎の部分も美味しいですよ。",
+        text:
+          "サラダやお弁当に大活躍なブロッコリー。 マヨネーズやつぶマスタードが欲しくなる。 茎の部分も美味しいですよ。",
         price: 150,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -51,7 +56,8 @@ export default new Vuex.Store({
       {
         id: 6,
         title: "つくし 50g",
-        text: "毎年にょきにょき生えてくるつくし。 シンプルに醤油で炒めたり、佃煮にすると美味しいですよ。",
+        text:
+          "毎年にょきにょき生えてくるつくし。 シンプルに醤油で炒めたり、佃煮にすると美味しいですよ。",
         price: 100,
         img: require("@/assets/mizuna.jpg"),
         quantity: 1,
@@ -127,6 +133,9 @@ export default new Vuex.Store({
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
     },
+    resetDrawer(state) {
+      state.drawer = false;
+    },
   },
   actions: {
     addToCart({ state, commit }, item) {
@@ -161,6 +170,9 @@ export default new Vuex.Store({
     },
     toggleSideMenu({ commit }) {
       commit("toggleSideMenu");
+    },
+    resetDrawer({ commit }) {
+      commit("resetDrawer");
     },
   },
 });

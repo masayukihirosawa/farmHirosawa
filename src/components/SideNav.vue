@@ -36,5 +36,9 @@ export default {
       this.$store.dispatch("toggleSideMenu");
     },
   },
+  beforeRouteLeave(to, from, next) {
+    this.$store.dispatch("resetDrawer");
+    next();
+  },
 };
 </script>
