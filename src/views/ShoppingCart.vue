@@ -58,7 +58,7 @@
       <v-row class="ma-10 justify-center">
         <v-list-item-action>
           <v-list-item-title v-if="cartItems.length"
-            >合計金額: {{ cartTotalPrice }}</v-list-item-title
+            >合計金額: {{ cartTotalPrice }}円</v-list-item-title
           >
           <v-btn
             v-if="cartItems.length"
