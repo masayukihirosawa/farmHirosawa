@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container style="height: 1500px;">
+    <v-container>
       <v-row>
         <v-col class="d-md-flex">
           <v-img
