@@ -14,7 +14,7 @@ export default new Vuex.Store({
         text:
           "サラダの定番野菜、水菜。 ツナ缶を使ったサラダ、お肉を使ったサラダ、豆腐サラダ、、、。 何と合わせてもいい感じになるのいろいろアレンジしてみてくださいね。",
         price: 100,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/水菜.jpg"),
         quantity: 1,
       },
       {
@@ -23,7 +23,7 @@ export default new Vuex.Store({
         text:
           "寒さにあたって甘みの増したほうれん草。 お浸しや和えもの、いろんなおかずにアレンジしてみてくださいね。",
         price: 100,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/ほうれん草.jpg"),
         quantity: 1,
       },
       {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
         text:
           "お鍋料理の定番野菜、菊菜。 さっと湯通してお浸しにしても、シャキシャキして美味しいですよ。",
         price: 100,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/菊菜.jpg"),
         quantity: 1,
       },
       {
@@ -41,7 +41,7 @@ export default new Vuex.Store({
         text:
           "春に採れる春キャベツ。 葉が柔らかく、加熱料理はもちろんサラダなどの生食でも美味しくいただけます。",
         price: 200,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/キャベツ.jpg"),
         quantity: 1,
       },
       {
@@ -50,7 +50,7 @@ export default new Vuex.Store({
         text:
           "サラダやお弁当に大活躍なブロッコリー。 マヨネーズやつぶマスタードが欲しくなる。 茎の部分も美味しいですよ。",
         price: 150,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/ブロッコリー.jpg"),
         quantity: 1,
       },
       {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         text:
           "毎年にょきにょき生えてくるつくし。 シンプルに醤油で炒めたり、佃煮にすると美味しいですよ。",
         price: 100,
-        img: require("@/assets/mizuna.jpg"),
+        img: require("@/assets/items/つくし.jpg"),
         quantity: 1,
       },
     ],

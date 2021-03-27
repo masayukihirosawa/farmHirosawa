@@ -27,7 +27,7 @@
 export default {
   data() {
     return {
-      img: require("@/assets/tsubame.jpg"),
+      img: require("@/assets/ホーム.jpg"),
     };
   },
 };

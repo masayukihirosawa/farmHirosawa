@@ -1,8 +1,7 @@
 <template>
   <div>
-    <v-img :src="img" height="40vh"></v-img>
-    <!-- ItemsList -->
-    <v-container style="height: 1500px;">
+    <v-container>
+      <v-img :src="img" height="30vh" class="my-5"></v-img>
       <v-row>
         <v-col
           v-for="(item, index) in items"
@@ -33,7 +32,7 @@ export default {
   name: "home",
   data() {
     return {
-      img: require("@/assets/home.jpg"),
+      img: require("@/assets/ホーム.jpg"),
     };
   },
   computed: {
@@ -44,4 +43,4 @@ export default {
 };
 </script>
 
-      <!-- サイトに訪れた時に、一番初めに描画されるページです。 -->
+<!-- サイトに訪れた時に、一番初めに描画されるページです。 -->
